@@ -7,12 +7,16 @@
 
 import UIKit
 
-class ExploreViewController: UIViewController, UISearchResultsUpdating {
-  func updateSearchResults(for searchController: UISearchController) {
-   
-  }
+class ExploreViewController: UIViewController{
+  
   var cards: [ExploreCards] = []
-  var items: [ExploreBrand] = []
+  //var items: [ExploreBrand] = []
+  
+  let items: [ExploreBrand] = {
+    let firstCard = ExploreBrand(productBrand: "Anxiety Problems", imageName: "Anxiety Problems")
+    let secondCard = ExploreBrand(productBrand: "Sleep Better", imageName: "Sleep Better")
+    return [firstCard, secondCard]
+  }()
   
   // MARK: - TIME LABEL TO DISPLAY THE PAGE TITLE
   lazy var titlePageLabel: UILabel = {
@@ -61,7 +65,7 @@ class ExploreViewController: UIViewController, UISearchResultsUpdating {
   // MARK: - COLLECTION VIEW
   lazy var brandCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .vertical
+    layout.scrollDirection = .horizontal
     layout.minimumLineSpacing = 25
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.dataSource = self
@@ -75,8 +79,8 @@ class ExploreViewController: UIViewController, UISearchResultsUpdating {
   // MARK: - COLLECTION VIEW
   lazy var productCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .horizontal
-    layout.minimumLineSpacing = 25
+    layout.scrollDirection = .vertical
+    layout.minimumLineSpacing = 30
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.dataSource = self
     collectionView.delegate = self
@@ -86,13 +90,16 @@ class ExploreViewController: UIViewController, UISearchResultsUpdating {
     collectionView.translatesAutoresizingMaskIntoConstraints = false
     return collectionView
   }()
+  let cellId = "cellId"
+  let productId = "productId"
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationController?.navigationBar.isHidden = true
     view.backgroundColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
+    productCollectionView.register(ExploreCollectionViewCell.self, forCellWithReuseIdentifier: "productId")
+    brandCollectionView.register(BrandCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
     setupConstraints()
   }
-
   // MARK: - SETUP VIEWS FUNCTION
   func addDefaultViews() {
     view.addSubview(titlePageLabel)
@@ -126,12 +133,18 @@ class ExploreViewController: UIViewController, UISearchResultsUpdating {
       searchBar.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: -10),
       searchBar.heightAnchor.constraint(equalToConstant: 50),
       searchBar.widthAnchor.constraint(equalToConstant: 50),
+      //MARK: - BRANDCOLLECTIONVIEW CONSTRAINTS
       //MARK: - CONSTRAINTS FOR SEARCH BUTTON
       searchButton.topAnchor.constraint(equalTo: cartIcon.bottomAnchor, constant: 20),
       searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
       searchButton.heightAnchor.constraint(equalToConstant: 50),
       searchButton.widthAnchor.constraint(equalToConstant: 50),
     ])
+    brandCollectionView.anchorWithConstantsToTop(top: searchBar.bottomAnchor,
+                                            left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 600, rightConstant: 0)
+    
+    productCollectionView.anchorWithConstantsToTop(top: brandCollectionView.bottomAnchor,
+                                            left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 20, rightConstant: 20)
   }
 }
 

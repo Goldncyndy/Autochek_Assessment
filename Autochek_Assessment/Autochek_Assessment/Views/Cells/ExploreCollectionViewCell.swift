@@ -16,22 +16,19 @@ class ExploreCollectionViewCell: UICollectionViewCell {
       let imageView = UIImageView()
       imageView.contentMode = .scaleAspectFill
       imageView.clipsToBounds = true
+      imageView.layer.cornerRadius = 15
       imageView.translatesAutoresizingMaskIntoConstraints = false
       return imageView
   }()
-  let productNametextView: UITextView = {
-      let textView = UITextView()
-      textView.isEditable = false
+  let productNametextView: UILabel = {
+      let textView = UILabel()
       textView.font = UIFont(name: "NunitoSans-Bold", size: 18)
-      textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 20)
       textView.translatesAutoresizingMaskIntoConstraints = false
       return textView
   }()
-  let productBrandTextView: UITextView = {
-      let textView = UITextView()
-      textView.isEditable = false
+  let productBrandTextView: UILabel = {
+      let textView = UILabel()
       textView.font = UIFont(name: "NunitoSans-Regular", size: 14)
-      textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 20)
       textView.translatesAutoresizingMaskIntoConstraints = false
       return textView
   }()
@@ -42,13 +39,27 @@ class ExploreCollectionViewCell: UICollectionViewCell {
       imageView.translatesAutoresizingMaskIntoConstraints = false
       return imageView
   }()
-  let productPriceTextView: UITextView = {
-      let textView = UITextView()
-      textView.isEditable = false
+  let productPriceTextView: UILabel = {
+      let textView = UILabel()
       textView.font = UIFont(name: "NunitoSans-Semibold", size: 14)
-      textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 20)
       textView.translatesAutoresizingMaskIntoConstraints = false
       return textView
+  }()
+  let productImageV: UIImageView = {
+    let view = UIImageView()
+    view.backgroundColor = .magenta
+    view.layer.cornerRadius = 15
+    view.isUserInteractionEnabled = true
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+  let productDetailsView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .white
+    view.layer.cornerRadius = 15
+    view.isUserInteractionEnabled = true
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
   }()
   lazy var addButton: UIButton = {
     let button = UIButton()
@@ -59,6 +70,7 @@ class ExploreCollectionViewCell: UICollectionViewCell {
   override init(frame: CGRect) {
       super.init(frame: frame)
       setUpViews()
+    
   }
   func setUpViews() {
           addSubview(productNametextView)
@@ -66,12 +78,19 @@ class ExploreCollectionViewCell: UICollectionViewCell {
           addSubview(productBrandTextView)
           addSubview(productPriceTextView)
           addSubview(productRateView)
+          addSubview(productImageV)
+          addSubview(productDetailsView)
           addSubview(addButton)
-    productImageView.anchorWithConstantsToTop(top: topAnchor, left: leftAnchor, bottom: productNametextView.topAnchor, right: rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0)
+          productDetailsView.addSubview(productImageV)
+    productImageView.anchorWithConstantsToTop(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0)
+    
+    productDetailsView.anchorWithConstantsToTop(top: topAnchor, left: leftAnchor, bottom:bottomAnchor, right: rightAnchor, topConstant: 80, leftConstant: 20, bottomConstant: 0, rightConstant: 20)
+    
+    productImageV.anchorWithConstantsToTop(top: topAnchor, left:  leftAnchor, bottom: productDetailsView.bottomAnchor, right: rightAnchor, topConstant: 5, leftConstant: 35, bottomConstant: 100, rightConstant: 35)
+    
     productNametextView.anchorWithConstantsToTop(top: productImageView.bottomAnchor, left: leftAnchor,
                     bottom: bottomAnchor,right: rightAnchor,topConstant: 0,leftConstant: 0,
                     bottomConstant: 40, rightConstant: 20)
-   // productNametextView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35).isActive = true
     productBrandTextView.anchorWithConstantsToTop(top: productNametextView.bottomAnchor, left: leftAnchor,
                     bottom: bottomAnchor,right: rightAnchor,topConstant: 0,leftConstant: 0,
                     bottomConstant: 35, rightConstant: 20)
@@ -82,8 +101,14 @@ class ExploreCollectionViewCell: UICollectionViewCell {
                                              bottom: bottomAnchor,right: rightAnchor,topConstant: 0,leftConstant: 0,
                                              bottomConstant: 30, rightConstant: 20)
     addButton.anchorWithConstantsToTop(top: productRateView.bottomAnchor, left: leftAnchor,
-                    bottom: bottomAnchor,right: rightAnchor,topConstant: 0,leftConstant: 20,
+                    bottom: bottomAnchor,right: rightAnchor,topConstant: 0,leftConstant: 350,
                     bottomConstant: 25, rightConstant: 0)
+    addButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+    addButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.1).isActive = true
+    
+    NSLayoutConstraint.activate([
+      
+    ])
       }
   required init?(coder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
