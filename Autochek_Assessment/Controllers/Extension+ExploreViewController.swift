@@ -14,7 +14,7 @@ extension ExploreViewController: UICollectionViewDataSource, UICollectionViewDel
       return 10
     }
     else {
-      return 10
+      return 15
     }
    
 //    if collectionView == brandCollectionView {
@@ -89,8 +89,13 @@ extension ExploreViewController: UICollectionViewDataSource, UICollectionViewDel
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if collectionView == productCollectionView {
-    let dataToSend = self.list?.result[ indexPath.row ]
-      navigationController?.pushViewController(ProductViewController(), animated: true)
+      let viewController = ProductViewController()
+      viewController.productName = (list?.result[indexPath.row].title)!
+      viewController.productBrand = (list?.result[indexPath.row].sellingCondition)!
+      viewController.productPrice = (list?.result[indexPath.row].state)!
+      viewController.configure(with: (list?.result[indexPath.row].imageUrl)!)
+      navigationController?.pushViewController(viewController, animated: true)
+      
     }
   }
   

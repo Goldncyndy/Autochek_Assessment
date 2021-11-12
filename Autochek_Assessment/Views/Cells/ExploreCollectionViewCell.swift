@@ -61,7 +61,7 @@ class ExploreCollectionViewCell: UICollectionViewCell {
   }()
   let productImageV: UIImageView = {
     let view = UIImageView()
-    view.backgroundColor = .magenta
+    view.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.97, alpha: 1.00)
     view.contentMode = .scaleAspectFit
     view.layer.cornerRadius = 15
     view.isUserInteractionEnabled = true
@@ -78,7 +78,10 @@ class ExploreCollectionViewCell: UICollectionViewCell {
   }()
   lazy var addButton: UIButton = {
     let button = UIButton()
-    button.setImage(UIImage(named: "Filter-Button"), for: .normal)
+    button.layer.cornerRadius = 18
+    button.backgroundColor = .black
+    button.setTitleColor(.yellow, for: .normal)
+    button.setTitle("+", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     return button
   }()

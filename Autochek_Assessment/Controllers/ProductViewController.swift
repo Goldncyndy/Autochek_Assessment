@@ -7,7 +7,9 @@
 
 import UIKit
 
+
 class ProductViewController: UIViewController {
+  var result : Result?
   
   // MARK: - TIME LABEL TO DISPLAY THE PAGE TITLE
   lazy var titlePageLabel: UILabel = {
@@ -91,7 +93,7 @@ class ProductViewController: UIViewController {
   // MARK: - TIME LABEL TO DISPLAY THE PRODUCT IMAGE VIEW
   let productImageV: UIImageView = {
     let view = UIImageView()
-    view.backgroundColor = .magenta
+    view.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.97, alpha: 1.00)
     view.contentMode = .scaleAspectFit
     view.layer.cornerRadius = 15
     view.isUserInteractionEnabled = true
@@ -101,23 +103,81 @@ class ProductViewController: UIViewController {
   // MARK: - TIME LABEL TO DISPLAY THE PRODUCT DETAILS NAME
   let productDetailsView: UIView = {
     let view = UIView()
-    view.backgroundColor = .cyan
+    view.backgroundColor = .white
     view.layer.cornerRadius = 15
     view.isUserInteractionEnabled = true
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
+  // MARK: - TIME LABEL TO DISPLAY THE TOTAL PRODUCT PRICE
+  let totalPriceTextView: UILabel = {
+      let textView = UILabel()
+      textView.text = "Total: $300.00"
+      textView.font = UIFont.boldSystemFont(ofSize: 14)
+      textView.font = UIFont(name: "NunitoSans-Semibold", size: 14)
+      textView.translatesAutoresizingMaskIntoConstraints = false
+      return textView
+  }()
+  // MARK: - TIME LABEL TO DISPLAY THE PRODUCT DETAILS NAME
+  let purchaseView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .white
+    view.layer.cornerRadius = 25
+    view.isUserInteractionEnabled = true
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
   // MARK: - TIME LABEL TO DISPLAY THE PURCHASE BUTTON
-  lazy var purchaseButton: UIButton = {
+  lazy var purchaseBigButton: UIButton = {
     let button = UIButton()
-    button.setImage(UIImage(named: "Filter-Button"), for: .normal)
+    button.layer.cornerRadius = 12
+    button.backgroundColor = .black
+    button.setTitleColor(.yellow, for: .normal)
+    button.setTitle("Add to cart", for: .normal)
     button.translatesAutoresizingMaskIntoConstraints = false
     return button
   }()
+  // MARK: - TIME LABEL TO DISPLAY THE PURCHASE BUTTON
+  lazy var purchaseButton: UIButton = {
+    let button = UIButton()
+    button.backgroundColor = .black
+    button.layer.cornerRadius = 12
+    button.setTitleColor(.yellow, for: .normal)
+    button.setTitle("$150.00", for: .normal)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    return button
+  }()
+  
+  var productName = ""
+  var productBrand = ""
+  var productPrice = ""
+  var productImage = UIImage()
+  func configure(with urlString: String){
+      guard let url = URL(string: urlString) else {
+        return
+
+      }
+      URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+        guard let data = data , error == nil else {
+         return
+        }
+        DispatchQueue.main.async {
+          let image = UIImage(data: data)
+          self!.productImageV.image = image!
+
+        }
+      }.resume()
+    }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
+    productNameLabel.text = productName
+    productNametextView.text = productName
+    productBrandTextView.text = productBrand
+    productPriceTextView.text = productPrice
     navigationController?.navigationBar.isHidden = true
-    view.backgroundColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
+    
     setupConstraints()
   }
 
@@ -128,6 +188,9 @@ class ProductViewController: UIViewController {
     view.addSubview(cartIcon)
     view.addSubview(productNameLabel)
     view.addSubview(productDetailsView)
+    view.addSubview(purchaseView)
+    purchaseView.addSubview(purchaseBigButton)
+    purchaseView.addSubview(totalPriceTextView)
     productDetailsView.addSubview(productNametextView)
     productDetailsView.addSubview(productImageV)
     productDetailsView.addSubview(productRateLabel)
@@ -189,9 +252,22 @@ class ProductViewController: UIViewController {
       productRateLabel.trailingAnchor.constraint(equalTo: productDetailsView.trailingAnchor, constant: -20),
       //MARK: - CONSTRAINTS FOR PRODUCT PURCHASE BUTTON
       purchaseButton.topAnchor.constraint(equalTo: productRateView.bottomAnchor, constant: 10),
-      purchaseButton.trailingAnchor.constraint(equalTo: productDetailsView.trailingAnchor, constant: -40),
-      purchaseButton.heightAnchor.constraint(equalToConstant: 40),
-      purchaseButton.widthAnchor.constraint(equalToConstant: 40)
+      purchaseButton.trailingAnchor.constraint(equalTo: productDetailsView.trailingAnchor, constant: -20),
+      purchaseButton.heightAnchor.constraint(equalToConstant: 50),
+      purchaseButton.widthAnchor.constraint(equalToConstant: 100),
+      
+      purchaseView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+      purchaseView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+      purchaseView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+      purchaseView.heightAnchor.constraint(equalToConstant: 150),
+      
+      purchaseBigButton.leadingAnchor.constraint(equalTo: purchaseView.leadingAnchor, constant: 20),
+      purchaseBigButton.trailingAnchor.constraint(equalTo: purchaseView.trailingAnchor, constant: -20),
+      purchaseBigButton.bottomAnchor.constraint(equalTo: purchaseView.bottomAnchor, constant: -30),
+      purchaseBigButton.heightAnchor.constraint(equalToConstant: 50),
+      
+      totalPriceTextView.topAnchor.constraint(equalTo: purchaseView.topAnchor, constant: 20),
+      totalPriceTextView.trailingAnchor.constraint(equalTo: purchaseView.trailingAnchor, constant: -20)
     ])
   }
 }
