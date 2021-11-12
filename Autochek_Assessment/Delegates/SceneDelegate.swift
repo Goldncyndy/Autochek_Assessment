@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       
       guard let windowScene = (scene as? UIWindowScene) else { return }
       
-      let rootViewCOntroller = ExploreViewController()
+      let rootViewCOntroller = TabBarViewController()
       
       let navigationController = UINavigationController(rootViewController: rootViewCOntroller)
       

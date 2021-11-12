@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,11 @@
 		B45ABD26273D67EF00C01958 /* PopularCarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABD25273D67EF00C01958 /* PopularCarsModel.swift */; };
 		B45ABD28273D68AC00C01958 /* CarsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABD27273D68AC00C01958 /* CarsListModel.swift */; };
 		B45ABD2A273D68E700C01958 /* CarsDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABD29273D68E700C01958 /* CarsDetailModel.swift */; };
+		B45ABD2C273E12FE00C01958 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABD2B273E12FE00C01958 /* TabBarController.swift */; };
+		B45ABD2F273E143C00C01958 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABD2E273E143C00C01958 /* HomeViewController.swift */; };
+		B45ABD31273E145B00C01958 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABD30273E145B00C01958 /* FavoriteViewController.swift */; };
+		B45ABD34273E148200C01958 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABD33273E148200C01958 /* NotificationViewController.swift */; };
+		B45ABD36273E149100C01958 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45ABD35273E149100C01958 /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +53,11 @@
 		B45ABD25273D67EF00C01958 /* PopularCarsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCarsModel.swift; sourceTree = "<group>"; };
 		B45ABD27273D68AC00C01958 /* CarsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsListModel.swift; sourceTree = "<group>"; };
 		B45ABD29273D68E700C01958 /* CarsDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsDetailModel.swift; sourceTree = "<group>"; };
+		B45ABD2B273E12FE00C01958 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		B45ABD2E273E143C00C01958 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B45ABD30273E145B00C01958 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		B45ABD33273E148200C01958 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		B45ABD35273E149100C01958 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +86,6 @@
 				097B9D72012319855914EA38 /* Pods-Autochek_Assessment.debug.xcconfig */,
 				789D8D321E8C21B390D5199A /* Pods-Autochek_Assessment.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -133,9 +142,11 @@
 		B45ABD11273C8FC300C01958 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B45ABD2D273E13C500C01958 /* TabBarViewControllers */,
 				B45ABCFF273C8F9800C01958 /* ExploreViewController.swift */,
 				B45ABD14273C914E00C01958 /* ProductViewController.swift */,
 				B45ABD16273CB30500C01958 /* Extension+ExploreViewController.swift */,
+				B45ABD2B273E12FE00C01958 /* TabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -184,6 +195,17 @@
 				B45ABD23273D671E00C01958 /* DataLoader.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B45ABD2D273E13C500C01958 /* TabBarViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B45ABD2E273E143C00C01958 /* HomeViewController.swift */,
+				B45ABD30273E145B00C01958 /* FavoriteViewController.swift */,
+				B45ABD33273E148200C01958 /* NotificationViewController.swift */,
+				B45ABD35273E149100C01958 /* ChatViewController.swift */,
+			);
+			path = TabBarViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,13 +327,18 @@
 				B45ABD17273CB30500C01958 /* Extension+ExploreViewController.swift in Sources */,
 				B45ABD1D273CBE1B00C01958 /* ExploreModel.swift in Sources */,
 				B45ABD00273C8F9800C01958 /* ExploreViewController.swift in Sources */,
+				B45ABD2F273E143C00C01958 /* HomeViewController.swift in Sources */,
+				B45ABD31273E145B00C01958 /* FavoriteViewController.swift in Sources */,
 				B45ABCFC273C8F9800C01958 /* AppDelegate.swift in Sources */,
 				B45ABD15273C914E00C01958 /* ProductViewController.swift in Sources */,
 				B45ABD2A273D68E700C01958 /* CarsDetailModel.swift in Sources */,
 				B45ABD21273D113F00C01958 /* ProductBrandModel.swift in Sources */,
 				B45ABD1B273CBDFA00C01958 /* ExploreCollectionViewCell.swift in Sources */,
+				B45ABD34273E148200C01958 /* NotificationViewController.swift in Sources */,
 				B45ABD1F273D0FBC00C01958 /* BrandCollectionViewCell.swift in Sources */,
+				B45ABD2C273E12FE00C01958 /* TabBarController.swift in Sources */,
 				B45ABCFE273C8F9800C01958 /* SceneDelegate.swift in Sources */,
+				B45ABD36273E149100C01958 /* ChatViewController.swift in Sources */,
 				B45ABD26273D67EF00C01958 /* PopularCarsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

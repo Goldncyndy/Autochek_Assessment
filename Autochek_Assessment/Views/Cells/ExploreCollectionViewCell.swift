@@ -78,7 +78,7 @@ class ExploreCollectionViewCell: UICollectionViewCell {
   }()
   lazy var addButton: UIButton = {
     let button = UIButton()
-    button.layer.cornerRadius = 18
+    button.layer.cornerRadius = 17
     button.backgroundColor = .black
     button.setTitleColor(.yellow, for: .normal)
     button.setTitle("+", for: .normal)

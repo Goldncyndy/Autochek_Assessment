@@ -253,7 +253,7 @@ class ProductViewController: UIViewController {
       //MARK: - CONSTRAINTS FOR PRODUCT PURCHASE BUTTON
       purchaseButton.topAnchor.constraint(equalTo: productRateView.bottomAnchor, constant: 10),
       purchaseButton.trailingAnchor.constraint(equalTo: productDetailsView.trailingAnchor, constant: -20),
-      purchaseButton.heightAnchor.constraint(equalToConstant: 50),
+      purchaseButton.heightAnchor.constraint(equalToConstant: 40),
       purchaseButton.widthAnchor.constraint(equalToConstant: 100),
       
       purchaseView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
