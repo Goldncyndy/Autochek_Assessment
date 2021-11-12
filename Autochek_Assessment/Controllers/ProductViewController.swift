@@ -48,54 +48,54 @@ class ProductViewController: UIViewController {
   }()
   // MARK: - TIME LABEL TO DISPLAY THE PRODUCT NAME
   let productNametextView: UILabel = {
-      let textView = UILabel()
-      textView.text = "Product Name"
-      textView.font = UIFont.boldSystemFont(ofSize: 18)
-      textView.font = UIFont(name: "NunitoSans-Bold", size: 18)
-      textView.translatesAutoresizingMaskIntoConstraints = false
-      return textView
+    let textView = UILabel()
+    textView.text = "Product Name"
+    textView.font = UIFont.boldSystemFont(ofSize: 18)
+    textView.font = UIFont(name: "NunitoSans-Bold", size: 18)
+    textView.translatesAutoresizingMaskIntoConstraints = false
+    return textView
   }()
   // MARK: - TIME LABEL TO DISPLAY THE PRODUCT BRAND
   let productBrandTextView: UILabel = {
-      let textView = UILabel()
-      textView.text = "Brand"
-      textView.font = UIFont.boldSystemFont(ofSize: 13)
-      textView.font = UIFont(name: "NunitoSans-Regular", size: 13)
-      textView.translatesAutoresizingMaskIntoConstraints = false
-      return textView
+    let textView = UILabel()
+    textView.text = "Brand"
+    textView.font = UIFont.boldSystemFont(ofSize: 13)
+    textView.font = UIFont(name: "NunitoSans-Regular", size: 13)
+    textView.translatesAutoresizingMaskIntoConstraints = false
+    return textView
   }()
   // MARK: - TIME LABEL TO DISPLAY THE PRODUCT RATE LABEL
   let productRateLabel: UILabel = {
-      let textView = UILabel()
-      textView.text = "(5.0)"
-      textView.font = UIFont(name: "NunitoSans-Regular", size: 14)
-      textView.translatesAutoresizingMaskIntoConstraints = false
-      return textView
+    let textView = UILabel()
+    textView.text = "(5.0)"
+    textView.font = UIFont(name: "NunitoSans-Regular", size: 14)
+    textView.translatesAutoresizingMaskIntoConstraints = false
+    return textView
   }()
   // MARK: - TIME LABEL TO DISPLAY THE PRODUCT IMAGE
   let productRateView: UIImageView = {
-      let imageView = UIImageView()
-      imageView.contentMode = .scaleAspectFit
-      imageView.clipsToBounds = true
-      imageView.image = UIImage(named: "star")
-      imageView.translatesAutoresizingMaskIntoConstraints = false
-      return imageView
+    let imageView = UIImageView()
+    imageView.contentMode = .scaleAspectFit
+    imageView.clipsToBounds = true
+    imageView.image = UIImage(named: "star")
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
   }()
   // MARK: - TIME LABEL TO DISPLAY THE PRODUCT PRICE
   let productPriceTextView: UILabel = {
-      let textView = UILabel()
-      textView.text = "$111.67"
-      textView.font = UIFont.boldSystemFont(ofSize: 14)
-      textView.font = UIFont(name: "NunitoSans-Semibold", size: 14)
-      textView.translatesAutoresizingMaskIntoConstraints = false
-      return textView
+    let textView = UILabel()
+    textView.text = "$111.67"
+    textView.font = UIFont.boldSystemFont(ofSize: 14)
+    textView.font = UIFont(name: "NunitoSans-Semibold", size: 14)
+    textView.translatesAutoresizingMaskIntoConstraints = false
+    return textView
   }()
   // MARK: - TIME LABEL TO DISPLAY THE PRODUCT IMAGE VIEW
   let productImageV: UIImageView = {
     let view = UIImageView()
     view.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.97, alpha: 1.00)
     view.contentMode = .scaleAspectFit
-    view.layer.cornerRadius = 15
+    view.layer.cornerRadius = 20
     view.isUserInteractionEnabled = true
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
@@ -111,12 +111,12 @@ class ProductViewController: UIViewController {
   }()
   // MARK: - TIME LABEL TO DISPLAY THE TOTAL PRODUCT PRICE
   let totalPriceTextView: UILabel = {
-      let textView = UILabel()
-      textView.text = "Total: $300.00"
-      textView.font = UIFont.boldSystemFont(ofSize: 14)
-      textView.font = UIFont(name: "NunitoSans-Semibold", size: 14)
-      textView.translatesAutoresizingMaskIntoConstraints = false
-      return textView
+    let textView = UILabel()
+    textView.text = "Total: $300.00"
+    textView.font = UIFont.boldSystemFont(ofSize: 14)
+    textView.font = UIFont(name: "NunitoSans-Semibold", size: 14)
+    textView.translatesAutoresizingMaskIntoConstraints = false
+    return textView
   }()
   // MARK: - TIME LABEL TO DISPLAY THE PRODUCT DETAILS NAME
   let purchaseView: UIView = {
@@ -153,22 +153,19 @@ class ProductViewController: UIViewController {
   var productPrice = ""
   var productImage = UIImage()
   func configure(with urlString: String){
-      guard let url = URL(string: urlString) else {
-        return
-
-      }
-      URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-        guard let data = data , error == nil else {
-         return
-        }
-        DispatchQueue.main.async {
-          let image = UIImage(data: data)
-          self!.productImageV.image = image!
-
-        }
-      }.resume()
+    guard let url = URL(string: urlString) else {
+      return
     }
-  
+    URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+      guard let data = data , error == nil else {
+        return
+      }
+      DispatchQueue.main.async {
+        let image = UIImage(data: data)
+        self!.productImageV.image = image!
+      }
+    }.resume()
+  }
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)
@@ -177,10 +174,8 @@ class ProductViewController: UIViewController {
     productBrandTextView.text = productBrand
     productPriceTextView.text = productPrice
     navigationController?.navigationBar.isHidden = true
-    
     setupConstraints()
   }
-
   // MARK: - SETUP VIEWS FUNCTION
   func addDefaultViews() {
     view.addSubview(titlePageLabel)

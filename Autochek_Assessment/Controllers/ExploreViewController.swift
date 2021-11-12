@@ -14,8 +14,6 @@ class ExploreViewController: UIViewController{
   let dataLoader = DataLoader()
   var cars: Json4Swift_Base?
   var list: Welcome?
-  //var items: [ExploreBrand] = []
-  
   // MARK: - TIME LABEL TO DISPLAY THE PAGE TITLE
   lazy var titlePageLabel: UILabel = {
     let label = UILabel()
@@ -42,16 +40,16 @@ class ExploreViewController: UIViewController{
   }()
   //MARK: // SEARCH BAR CONTROLLER
   let searchBar: LeftPaddedTextField = {
-      let textField = LeftPaddedTextField()
-      textField.layer.borderColor = UIColor.black.cgColor
-      textField.translatesAutoresizingMaskIntoConstraints = false
-      textField.backgroundColor = .white
-      textField.layer.borderWidth = 1
-      textField.placeholder = "☌ Search"
-      textField.isSecureTextEntry = true
-      textField.autocapitalizationType = .none
-      textField.layer.cornerRadius = 10
-      return textField
+    let textField = LeftPaddedTextField()
+    textField.layer.borderColor = UIColor.black.cgColor
+    textField.translatesAutoresizingMaskIntoConstraints = false
+    textField.backgroundColor = .white
+    textField.layer.borderWidth = 1
+    textField.placeholder = "☌ Search"
+    textField.isSecureTextEntry = true
+    textField.autocapitalizationType = .none
+    textField.layer.cornerRadius = 10
+    return textField
   }()
   // MARK: - FILTER BUTTON SEARCHBAR
   lazy var searchButton: UIButton = {
@@ -93,10 +91,8 @@ class ExploreViewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     data.pullJSONData { [weak self] data in
-        guard let selfReference = self else { return }
-         print(data)
-//        selfReference.carDetails = data
-//        print(selfReference.carDetails!)
+      guard let selfReference = self else { return }
+      print(data)
     }
     navigationController?.navigationBar.isHidden = true
     view.backgroundColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
@@ -125,7 +121,7 @@ class ExploreViewController: UIViewController{
       exploreIcon.widthAnchor.constraint(equalToConstant: 25),
       //MARK: - CONSTRAINTS FOR PAGETITLE LABEL
       titlePageLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-      titlePageLabel.leadingAnchor.constraint(equalTo: exploreIcon.trailingAnchor, constant: 40),
+      titlePageLabel.leadingAnchor.constraint(equalTo: exploreIcon.trailingAnchor, constant: 20),
       //MARK: - CONSTRAINTS FOR PAGETITLE LABEL
       cartIcon.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
       cartIcon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -145,10 +141,10 @@ class ExploreViewController: UIViewController{
       searchButton.widthAnchor.constraint(equalToConstant: 50),
     ])
     brandCollectionView.anchorWithConstantsToTop(top: searchBar.bottomAnchor,
-                                            left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 600, rightConstant: 0)
+                                                 left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 600, rightConstant: 0)
     
     productCollectionView.anchorWithConstantsToTop(top: brandCollectionView.bottomAnchor,
-                                            left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 20, rightConstant: 20)
+                                                   left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 20, rightConstant: 20)
   }
 }
 
