@@ -43,8 +43,8 @@ class ExploreViewController: UIViewController{
     let textField = LeftPaddedTextField()
     textField.layer.borderColor = UIColor.black.cgColor
     textField.translatesAutoresizingMaskIntoConstraints = false
-    textField.backgroundColor = .white
-    textField.layer.borderWidth = 1
+    textField.backgroundColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.00)
+    textField.layer.borderWidth = 0
     textField.placeholder = "☌ Search"
     textField.isSecureTextEntry = true
     textField.autocapitalizationType = .none
@@ -66,7 +66,7 @@ class ExploreViewController: UIViewController{
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.dataSource = self
     collectionView.delegate = self
-    collectionView.backgroundColor =  UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.00)
+    collectionView.backgroundColor =  .white
     collectionView.showsHorizontalScrollIndicator = false
     collectionView.isUserInteractionEnabled = true
     collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -91,7 +91,7 @@ class ExploreViewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     data.pullJSONData { [weak self] data in
-      guard let selfReference = self else { return }
+      guard self != nil else { return }
       print(data)
     }
     navigationController?.navigationBar.isHidden = true
@@ -141,7 +141,7 @@ class ExploreViewController: UIViewController{
       searchButton.widthAnchor.constraint(equalToConstant: 50),
     ])
     brandCollectionView.anchorWithConstantsToTop(top: searchBar.bottomAnchor,
-                                                 left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 600, rightConstant: 0)
+                                                 left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 580, rightConstant: 0)
     
     productCollectionView.anchorWithConstantsToTop(top: brandCollectionView.bottomAnchor,
                                                    left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 20, leftConstant: 20, bottomConstant: 20, rightConstant: 20)

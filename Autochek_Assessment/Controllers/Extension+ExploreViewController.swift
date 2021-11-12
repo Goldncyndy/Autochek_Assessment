@@ -55,7 +55,7 @@ extension ExploreViewController: UICollectionViewDataSource, UICollectionViewDel
   }
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     if collectionView  == brandCollectionView {
-      return CGSize(width: 80, height: 80)
+      return CGSize(width: 60, height: 60)
     } else {
       return CGSize(width: view.frame.width, height: 350)
     }

@@ -36,11 +36,11 @@ class BrandCollectionViewCell: UICollectionViewCell {
     addSubview(brandName)
     addSubview(productImageView)
     productImageView.anchorWithConstantsToTop(top: topAnchor, left: leftAnchor, bottom: brandName.bottomAnchor, right: rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 20, rightConstant: 0)
-    brandName.anchorWithConstantsToTop(top: bottomAnchor, left: leftAnchor,
+    brandName.anchorWithConstantsToTop(top: productImageView.topAnchor, left: leftAnchor,
                                        bottom: bottomAnchor,
                                        right: rightAnchor,
-                                       topConstant: 10,
-                                       leftConstant: 20,
+                                       topConstant: 50,
+                                       leftConstant: 11,
                                        bottomConstant: 0, rightConstant: -10)
     brandName.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35).isActive = true
   }

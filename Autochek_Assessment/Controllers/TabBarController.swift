@@ -12,6 +12,7 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 // MARK: Create instance of viewControllers
+      navigationController?.isNavigationBarHidden = true
         let homeViewController = ExploreViewController()
         let favoriteViewController = FavoriteViewController()
         let notificationViewController = NotificationViewController()
